@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lemora Global | Staffing & Workforce Solutions</title>
+  <meta name="description" content="Lemora Global provides staffing and workforce solutions for growing businesses across professional, administrative, healthcare, logistics, manufacturing, and business support roles." />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #0D1B2A;
+      --gold: #B89A5B;
+      --white: #FFFFFF;
+      --cream: #F7F7F5;
+      --gray: #E6E6E6;
+      --text: #111827;
+      --muted: #667085;
+      --shadow: 0 20px 50px rgba(13, 27, 42, 0.10);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+    }
+
+    .top-bar {
+      background: var(--navy);
+      color: var(--white);
+      font-size: 13px;
+      letter-spacing: 0.02em;
+    }
+
+    .top-bar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 10px 0;
+      flex-wrap: wrap;
+    }
+
+    .top-links {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .top-links a {
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(13, 27, 42, 0.08);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      gap: 32px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      min-width: 220px;
+    }
+
+    .brand img {
+      width: 190px;
+      height: auto;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--navy);
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 8px 0;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid transparent;
+      padding: 14px 22px;
+      border-radius: 0;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--white);
+      border-color: var(--gold);
+    }
+
+    .btn-navy {
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--navy);
+      border-color: rgba(13, 27, 42, 0.22);
+    }
+
+    .mobile-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(13, 27, 42, 0.14);
+      background: var(--white);
+      color: var(--navy);
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(13,27,42,0.95), rgba(13,27,42,0.82)),
+        url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1800&q=80') center/cover;
+      color: var(--white);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: auto -120px -220px auto;
+      width: 460px;
+      height: 460px;
+      border: 1px solid rgba(184, 154, 91, 0.35);
+      border-radius: 50%;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      min-height: 700px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 54px;
+      padding: 90px 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 44px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--navy);
+      line-height: 1.08;
+    }
+
+    .hero h1 {
+      color: var(--white);
+      font-size: clamp(46px, 6vw, 82px);
+      letter-spacing: -0.045em;
+      max-width: 820px;
+    }
+
+    .hero p {
+      margin-top: 24px;
+      max-width: 720px;
+      color: rgba(255, 255, 255, 0.84);
+      font-size: 18px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      margin-top: 34px;
+      flex-wrap: wrap;
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--navy);
+      padding: 34px;
+      border: 1px solid rgba(184, 154, 91, 0.35);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card h3 {
+      font-size: 30px;
+      margin-bottom: 18px;
+    }
+
+    .hero-card ul {
+      list-style: none;
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero-card li {
+      display: flex;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .hero-card li::before {
+      content: '✓';
+      color: var(--gold);
+      font-weight: 800;
+    }
+
+    section {
+      padding: 92px 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 40px;
+      align-items: end;
+      margin-bottom: 44px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(34px, 4vw, 54px);
+      letter-spacing: -0.035em;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .cream {
+      background: var(--cream);
+    }
+
+    .stats {
+      margin-top: -58px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: var(--white);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(13, 27, 42, 0.08);
+    }
+
+    .stat {
+      padding: 30px;
+      border-right: 1px solid rgba(13, 27, 42, 0.08);
+    }
+
+    .stat:last-child {
+      border-right: 0;
+    }
+
+    .stat strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 34px;
+      color: var(--navy);
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid rgba(13, 27, 42, 0.08);
+      padding: 32px;
+      min-height: 250px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+      border-color: rgba(184, 154, 91, 0.5);
+    }
+
+    .card .icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      background: rgba(184, 154, 91, 0.13);
+      color: var(--gold);
+      font-size: 22px;
+      margin-bottom: 24px;
+    }
+
+    .card h3 {
+      font-size: 25px;
+      margin-bottom: 14px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 54px;
+      align-items: center;
+    }
+
+    .image-panel {
+      min-height: 560px;
+      background: linear-gradient(rgba(13,27,42,0.10), rgba(13,27,42,0.10)), url('https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&w=1100&q=80') center/cover;
+      box-shadow: var(--shadow);
+    }
+
+    .content-panel .eyebrow {
+      margin-bottom: 16px;
+    }
+
+    .content-panel h2 {
+      font-size: clamp(34px, 4vw, 56px);
+      margin-bottom: 20px;
+    }
+
+    .content-panel p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 14px;
+      margin: 28px 0 32px;
+      list-style: none;
+    }
+
+    .feature-list li {
+      display: flex;
+      gap: 12px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .feature-list li::before {
+      content: '';
+      flex: 0 0 10px;
+      width: 10px;
+      height: 10px;
+      background: var(--gold);
+      margin-top: 8px;
+    }
+
+    .industries-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    .industry {
+      background: var(--white);
+      border: 1px solid rgba(13, 27, 42, 0.09);
+      padding: 20px;
+      min-height: 100px;
+      display: flex;
+      align-items: flex-end;
+      font-weight: 700;
+      color: var(--navy);
+      transition: all 0.2s ease;
+    }
+
+    .industry:hover {
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy);
+    }
+
+    .cta-band {
+      background: var(--navy);
+      color: var(--white);
+      padding: 70px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-band::after {
+      content: '';
+      position: absolute;
+      right: -90px;
+      top: -90px;
+      width: 260px;
+      height: 260px;
+      border: 1px solid rgba(184, 154, 91, 0.35);
+      border-radius: 50%;
+    }
+
+    .cta-band h2 {
+      color: var(--white);
+      font-size: clamp(34px, 4vw, 52px);
+      margin-bottom: 16px;
+    }
+
+    .cta-band p {
+      color: rgba(255, 255, 255, 0.78);
+      max-width: 720px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 36px;
+    }
+
+    .contact-info {
+      background: var(--navy);
+      color: var(--white);
+      padding: 40px;
+    }
+
+    .contact-info h3 {
+      color: var(--white);
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    .contact-info p {
+      color: rgba(255, 255, 255, 0.76);
+      margin-bottom: 30px;
+    }
+
+    .contact-line {
+      border-top: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 18px 0;
+    }
+
+    .contact-line span {
+      display: block;
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    form {
+      background: var(--white);
+      border: 1px solid rgba(13, 27, 42, 0.08);
+      padding: 40px;
+      box-shadow: var(--shadow);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    label {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--navy);
+    }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid rgba(13, 27, 42, 0.14);
+      padding: 14px 14px;
+      font-family: inherit;
+      font-size: 15px;
+      outline: none;
+      background: var(--white);
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--gold);
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    footer {
+      background: #07111d;
+      color: var(--white);
+      padding: 58px 0 28px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 0.8fr 1fr;
+      gap: 34px;
+      margin-bottom: 42px;
+    }
+
+    .footer-logo img {
+      width: 210px;
+      height: auto;
+      margin-bottom: 18px;
+    }
+
+    .footer-col h4 {
+      color: var(--white);
+      margin-bottom: 16px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .footer-col p, .footer-col a {
+      display: block;
+      color: rgba(255, 255, 255, 0.66);
+      margin-bottom: 9px;
+      font-size: 14px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 22px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 13px;
+    }
+
+    @media (max-width: 1020px) {
+      .nav-links, .nav .btn {
+        display: none;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      .nav-links.active {
+        display: grid;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--white);
+        padding: 22px 4%;
+        border-bottom: 1px solid rgba(13, 27, 42, 0.08);
+      }
+
+      .hero-grid,
+      .section-head,
+      .split,
+      .contact-grid,
+      .cta-band {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid,
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .industries-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .hero-grid {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .top-bar .container {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .brand img {
+        width: 155px;
+      }
+
+      .hero {
+        text-align: left;
+      }
+
+      .hero-grid {
+        padding: 64px 0;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      section {
+        padding: 68px 0;
+      }
+
+      .stats-grid,
+      .cards,
+      .industries-grid,
+      .form-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stat {
+        border-right: 0;
+        border-bottom: 1px solid rgba(13, 27, 42, 0.08);
+      }
+
+      .stat:last-child {
+        border-bottom: 0;
+      }
+
+      .cta-band,
+      form,
+      .contact-info,
+      .hero-card {
+        padding: 28px;
+      }
+
+      .image-panel {
+        min-height: 360px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="container">
+      <div>Staffing & Workforce Solutions</div>
+      <div class="top-links">
+        <a href="mailto:info@lemoraglobal.com">info@lemoraglobal.com</a>
+        <a href="tel:+17342624763">734-262-4763</a>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="container nav">
+      <a href="#home" class="brand" aria-label="Lemora Global home">
+        <img src="assets/logo-header.png" alt="Lemora Global" />
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#about">About Us</a>
+        <a href="#solutions">Solutions</a>
+        <a href="#industries">Industries</a>
+        <a href="#candidates">Candidates</a>
+        <a href="#insights">Insights</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a class="btn btn-gold" href="#contact">Partner With Us</a>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Lemora Global</div>
+          <h1>Staffing & Workforce Solutions Built for Growing Businesses</h1>
+          <p>Lemora Global connects companies with dependable talent across professional, administrative, healthcare, logistics, manufacturing, and business support roles.</p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-gold">Partner With Us</a>
+            <a href="#candidates" class="btn btn-outline" style="color: #fff; border-color: rgba(255,255,255,0.35);">Submit Your Resume</a>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Why choose Lemora Global">
+          <h3>Hiring support with a refined approach.</h3>
+          <ul>
+            <li>Pre-screened candidates aligned to your business needs.</li>
+            <li>Flexible staffing models for short-term and long-term hiring.</li>
+            <li>Industry-focused recruiting with clear communication.</li>
+            <li>Support for employers and candidates from start to finish.</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <div class="container stats">
+      <div class="stats-grid">
+        <div class="stat"><strong>01</strong><span>Reliable Workforce Support</span></div>
+        <div class="stat"><strong>02</strong><span>Pre-Screened Talent</span></div>
+        <div class="stat"><strong>03</strong><span>Flexible Staffing Models</span></div>
+        <div class="stat"><strong>04</strong><span>Industry-Focused Recruiting</span></div>
+      </div>
+    </div>
+
+    <section id="solutions" class="cream">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Solutions</div>
+            <h2>Workforce services designed around your hiring goals.</h2>
+          </div>
+          <p>We help organizations move faster, reduce hiring gaps, and connect with candidates who fit the role, culture, and long-term needs of the business.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="icon">01</div>
+            <h3>Permanent Staffing</h3>
+            <p>Find qualified professionals for long-term roles with a process focused on fit, reliability, and retention.</p>
+          </article>
+          <article class="card">
+            <div class="icon">02</div>
+            <h3>Contract Staffing</h3>
+            <p>Support projects, seasonal needs, and temporary workforce gaps with skilled contract talent.</p>
+          </article>
+          <article class="card">
+            <div class="icon">03</div>
+            <h3>Contract-to-Hire</h3>
+            <p>Evaluate talent on the job before making a long-term hiring decision.</p>
+          </article>
+          <article class="card">
+            <div class="icon">04</div>
+            <h3>Temporary Workforce</h3>
+            <p>Quickly scale teams for urgent needs, business cycles, and operational coverage.</p>
+          </article>
+          <article class="card">
+            <div class="icon">05</div>
+            <h3>Payroll Support</h3>
+            <p>Streamline workforce administration while keeping hiring operations organized and compliant.</p>
+          </article>
+          <article class="card">
+            <div class="icon">06</div>
+            <h3>Recruitment Support</h3>
+            <p>Strengthen sourcing, screening, coordination, and candidate communication through a structured recruiting process.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container split">
+        <div class="image-panel" aria-label="Professional staffing meeting"></div>
+        <div class="content-panel">
+          <div class="eyebrow">About Us</div>
+          <h2>A staffing partner built on trust, speed, and fit.</h2>
+          <p>Lemora Global is a staffing and workforce solutions company built to support both employers and job seekers. Our approach is simple: understand the need, find the right fit, and build long-term hiring relationships.</p>
+          <p>We focus on clear communication, dependable service, and practical hiring support for businesses that need quality talent without unnecessary complexity.</p>
+          <ul class="feature-list">
+            <li>Employer-focused hiring support</li>
+            <li>Candidate-centered career guidance</li>
+            <li>Professional and non-IT workforce solutions</li>
+            <li>Flexible support for growing teams</li>
+          </ul>
+          <a href="#contact" class="btn btn-navy">Start a Conversation</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="industries" class="cream">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Industries</div>
+            <h2>Supporting businesses across key workforce categories.</h2>
+          </div>
+          <p>We support companies across professional, operational, administrative, and customer-facing roles.</p>
+        </div>
+
+        <div class="industries-grid">
+          <div class="industry">Healthcare</div>
+          <div class="industry">Administrative</div>
+          <div class="industry">Accounting & Finance</div>
+          <div class="industry">Manufacturing</div>
+          <div class="industry">Logistics</div>
+          <div class="industry">Customer Support</div>
+          <div class="industry">Hospitality</div>
+          <div class="industry">Retail</div>
+          <div class="industry">Construction</div>
+          <div class="industry">Professional Services</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="candidates">
+      <div class="container">
+        <div class="cta-band">
+          <div>
+            <div class="eyebrow">Candidates</div>
+            <h2>Ready for your next opportunity?</h2>
+            <p>Submit your resume and connect with opportunities that align with your skills, experience, and career goals.</p>
+          </div>
+          <a href="#contact" class="btn btn-gold">Submit Resume</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="insights" class="cream">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Insights</div>
+            <h2>Practical hiring insights for employers and candidates.</h2>
+          </div>
+          <p>Use this space later for hiring tips, workforce trends, interview guidance, and company updates.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="icon">A</div>
+            <h3>For Employers</h3>
+            <p>How to reduce hiring delays and build a stronger candidate pipeline.</p>
+          </article>
+          <article class="card">
+            <div class="icon">B</div>
+            <h3>For Candidates</h3>
+            <p>How to prepare for interviews and present your experience clearly.</p>
+          </article>
+          <article class="card">
+            <div class="icon">C</div>
+            <h3>Workforce Updates</h3>
+            <p>Updates from Lemora Global and insights from the staffing market.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container contact-grid">
+        <div class="contact-info">
+          <h3>Partner with Lemora Global</h3>
+          <p>Tell us what kind of support you need. Our team will connect with you to discuss hiring needs, candidate opportunities, or general inquiries.</p>
+          <div class="contact-line">
+            <span>Email</span>
+            <a href="mailto:info@lemoraglobal.com">info@lemoraglobal.com</a>
+          </div>
+          <div class="contact-line">
+            <span>Phone</span>
+            <a href="tel:+17342624763">734-262-4763</a>
+          </div>
+          <div class="contact-line">
+            <span>Website</span>
+            <a href="https://lemoraglobal.com">www.lemoraglobal.com</a>
+          </div>
+        </div>
+
+        <form action="mailto:info@lemoraglobal.com" method="post" enctype="text/plain">
+          <div class="form-grid">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="Name" type="text" placeholder="Your name" required>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="Email" type="email" placeholder="Your email" required>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="Phone" type="tel" placeholder="Your phone number">
+            </div>
+            <div class="field">
+              <label for="interest">I am interested in</label>
+              <select id="interest" name="Interest">
+                <option>Hiring talent</option>
+                <option>Submitting my resume</option>
+                <option>General inquiry</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="Message" placeholder="Tell us how we can help"></textarea>
+          </div>
+          <button class="btn btn-gold" type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col footer-logo">
+          <img src="assets/logo-white.png" alt="Lemora Global" />
+          <p style="max-width: 320px;">Staffing and workforce solutions for growing businesses and career-focused professionals.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#about">About Us</a>
+          <a href="#solutions">Solutions</a>
+          <a href="#industries">Industries</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <a href="#solutions">Permanent Staffing</a>
+          <a href="#solutions">Contract Staffing</a>
+          <a href="#solutions">Temporary Workforce</a>
+          <a href="#solutions">Payroll Support</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="mailto:info@lemoraglobal.com">info@lemoraglobal.com</a>
+          <a href="tel:+17342624763">734-262-4763</a>
+          <a href="https://lemoraglobal.com">www.lemoraglobal.com</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> Lemora Global. All rights reserved.</span>
+        <span>Staffing & Workforce Solutions</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
+    const year = document.getElementById('year');
+
+    mobileToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      mobileToggle.textContent = navLinks.classList.contains('active') ? '×' : '☰';
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        mobileToggle.textContent = '☰';
+      });
+    });
+
+    year.textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
