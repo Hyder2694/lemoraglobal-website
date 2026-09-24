@@ -14,7 +14,10 @@
   <style>
     :root {
       --navy: #0D1B2A;
+      /* Accent gold. Passes WCAG AA on navy (6.5:1); fails on white/cream. */
       --gold: #B89A5B;
+      /* Darker gold for gold-coloured text sitting on white or cream (4.8:1). */
+      --gold-deep: #8A6F33;
       --white: #FFFFFF;
       --cream: #F7F7F5;
       --gray: #E6E6E6;
@@ -50,6 +53,23 @@
     .container {
       width: min(1180px, 92%);
       margin: 0 auto;
+    }
+
+    /* Offscreen until focused, so keyboard users can jump past the nav. */
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      z-index: 200;
+      background: var(--navy);
+      color: var(--white);
+      padding: 14px 20px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .skip-link:focus {
+      left: 0;
     }
 
     .top-bar {
@@ -161,7 +181,8 @@
 
     .btn-gold {
       background: var(--gold);
-      color: var(--white);
+      /* Navy on gold is 6.5:1; white on gold was only 2.7:1. */
+      color: var(--navy);
       border-color: var(--gold);
     }
 
@@ -222,7 +243,8 @@
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      color: var(--gold);
+      /* Most eyebrows sit on white/cream, so default to the accessible gold. */
+      color: var(--gold-deep);
       font-size: 12px;
       font-weight: 800;
       letter-spacing: 0.22em;
@@ -230,11 +252,17 @@
       margin-bottom: 20px;
     }
 
+    /* On navy the bright gold already passes, and reads better. */
+    .hero .eyebrow,
+    .cta-band .eyebrow {
+      color: var(--gold);
+    }
+
     .eyebrow::before {
       content: '';
       width: 44px;
       height: 1px;
-      background: var(--gold);
+      background: currentColor;
     }
 
     h1, h2, h3 {
@@ -388,8 +416,10 @@
       display: grid;
       place-items: center;
       background: rgba(184, 154, 91, 0.13);
-      color: var(--gold);
-      font-size: 22px;
+      color: var(--gold-deep);
+      /* 24px/800 counts as large text, which needs 3:1; this pairing is 4.3:1. */
+      font-size: 24px;
+      font-weight: 800;
       margin-bottom: 24px;
     }
 
@@ -482,11 +512,18 @@
       color: var(--white);
       padding: 70px;
       display: grid;
-      grid-template-columns: 1fr auto;
+      grid-template-columns: 1fr;
       align-items: center;
       gap: 32px;
       position: relative;
       overflow: hidden;
+    }
+
+    .mail-link {
+      color: var(--gold);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
 
     .cta-band::after {
@@ -511,27 +548,43 @@
       max-width: 720px;
     }
 
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 36px;
-    }
-
     .contact-info {
       background: var(--navy);
       color: var(--white);
-      padding: 40px;
+      padding: 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-info::after {
+      content: '';
+      position: absolute;
+      right: -90px;
+      top: -90px;
+      width: 260px;
+      height: 260px;
+      border: 1px solid rgba(184, 154, 91, 0.35);
+      border-radius: 50%;
     }
 
     .contact-info h3 {
       color: var(--white);
-      font-size: 32px;
+      font-size: clamp(30px, 3.4vw, 42px);
       margin-bottom: 16px;
     }
 
     .contact-info p {
       color: rgba(255, 255, 255, 0.76);
-      margin-bottom: 30px;
+      max-width: 680px;
+      margin-bottom: 14px;
+    }
+
+    .contact-lines {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0 32px;
+      position: relative;
+      z-index: 1;
     }
 
     .contact-line {
@@ -549,50 +602,17 @@
       margin-bottom: 4px;
     }
 
-    form {
-      background: var(--white);
-      border: 1px solid rgba(13, 27, 42, 0.08);
-      padding: 40px;
-      box-shadow: var(--shadow);
+    .contact-line address {
+      font-style: normal;
     }
 
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .field {
-      display: grid;
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-
-    label {
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--navy);
-    }
-
-    input, select, textarea {
-      width: 100%;
-      border: 1px solid rgba(13, 27, 42, 0.14);
-      padding: 14px 14px;
-      font-family: inherit;
-      font-size: 15px;
-      outline: none;
-      background: var(--white);
-    }
-
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--gold);
-    }
-
-    textarea {
-      min-height: 140px;
-      resize: vertical;
+    .contact-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 34px;
+      position: relative;
+      z-index: 1;
     }
 
     footer {
@@ -622,11 +642,12 @@
       letter-spacing: 0.14em;
     }
 
-    .footer-col p, .footer-col a {
+    .footer-col p, .footer-col a, .footer-col address {
       display: block;
       color: rgba(255, 255, 255, 0.66);
       margin-bottom: 9px;
       font-size: 14px;
+      font-style: normal;
     }
 
     .footer-bottom {
@@ -662,14 +683,13 @@
 
       .hero-grid,
       .section-head,
-      .split,
-      .contact-grid,
-      .cta-band {
+      .split {
         grid-template-columns: 1fr;
       }
 
       .stats-grid,
-      .cards {
+      .cards,
+      .contact-lines {
         grid-template-columns: repeat(2, 1fr);
       }
 
@@ -711,7 +731,7 @@
       .stats-grid,
       .cards,
       .industries-grid,
-      .form-grid,
+      .contact-lines,
       .footer-grid {
         grid-template-columns: 1fr;
       }
@@ -726,7 +746,6 @@
       }
 
       .cta-band,
-      form,
       .contact-info,
       .hero-card {
         padding: 28px;
@@ -739,11 +758,13 @@
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#home">Skip to main content</a>
+
   <div class="top-bar">
     <div class="container">
       <div>Staffing & Workforce Solutions</div>
       <div class="top-links">
-        <a href="mailto:info@lemoraglobal.com">info@lemoraglobal.com</a>
+        <a href="mailto:admin@lemoraglobal.com">admin@lemoraglobal.com</a>
         <a href="tel:+17342624763">734-262-4763</a>
       </div>
     </div>
@@ -765,11 +786,11 @@
       </nav>
 
       <a class="btn btn-gold" href="#contact">Partner With Us</a>
-      <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu">☰</button>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">☰</button>
     </div>
   </header>
 
-  <main id="home">
+  <main id="home" tabindex="-1">
     <section class="hero">
       <div class="container hero-grid">
         <div>
@@ -778,7 +799,6 @@
           <p>Lemora Global connects companies with dependable talent across professional, administrative, healthcare, logistics, manufacturing, and business support roles.</p>
           <div class="hero-actions">
             <a href="#contact" class="btn btn-gold">Partner With Us</a>
-            <a href="#candidates" class="btn btn-outline" style="color: #fff; border-color: rgba(255,255,255,0.35);">Submit Your Resume</a>
           </div>
         </div>
 
@@ -898,9 +918,8 @@
           <div>
             <div class="eyebrow">Candidates</div>
             <h2>Ready for your next opportunity?</h2>
-            <p>Submit your resume and connect with opportunities that align with your skills, experience, and career goals.</p>
+            <p>Email your resume to <a class="mail-link" href="mailto:admin@lemoraglobal.com">admin@lemoraglobal.com</a> and connect with opportunities that align with your skills, experience, and career goals.</p>
           </div>
-          <a href="#contact" class="btn btn-gold">Submit Resume</a>
         </div>
       </div>
     </section>
@@ -936,55 +955,34 @@
     </section>
 
     <section id="contact">
-      <div class="container contact-grid">
+      <div class="container">
         <div class="contact-info">
           <h3>Partner with Lemora Global</h3>
           <p>Tell us what kind of support you need. Our team will connect with you to discuss hiring needs, candidate opportunities, or general inquiries.</p>
-          <div class="contact-line">
-            <span>Email</span>
-            <a href="mailto:info@lemoraglobal.com">info@lemoraglobal.com</a>
+          <div class="contact-lines">
+            <div class="contact-line">
+              <span>Email</span>
+              <a href="mailto:admin@lemoraglobal.com">admin@lemoraglobal.com</a>
+            </div>
+            <div class="contact-line">
+              <span>Phone</span>
+              <a href="tel:+17342624763">734-262-4763</a>
+            </div>
+            <div class="contact-line">
+              <span>Address</span>
+              <address>1670 Friedrich St<br>Glendale Heights, IL 60139</address>
+            </div>
+            <div class="contact-line">
+              <span>Website</span>
+              <a href="https://lemoraglobal.com">www.lemoraglobal.com</a>
+            </div>
           </div>
-          <div class="contact-line">
-            <span>Phone</span>
-            <a href="tel:+17342624763">734-262-4763</a>
-          </div>
-          <div class="contact-line">
-            <span>Website</span>
-            <a href="https://lemoraglobal.com">www.lemoraglobal.com</a>
+
+          <div class="contact-actions">
+            <a class="btn btn-gold" href="mailto:admin@lemoraglobal.com">Email Us</a>
+            <a class="btn btn-outline" href="tel:+17342624763" style="color: #fff; border-color: rgba(255,255,255,0.35);">Call Us</a>
           </div>
         </div>
-
-        <form action="mailto:info@lemoraglobal.com" method="post" enctype="text/plain">
-          <div class="form-grid">
-            <div class="field">
-              <label for="name">Name</label>
-              <input id="name" name="Name" type="text" placeholder="Your name" required>
-            </div>
-            <div class="field">
-              <label for="email">Email</label>
-              <input id="email" name="Email" type="email" placeholder="Your email" required>
-            </div>
-          </div>
-          <div class="form-grid">
-            <div class="field">
-              <label for="phone">Phone</label>
-              <input id="phone" name="Phone" type="tel" placeholder="Your phone number">
-            </div>
-            <div class="field">
-              <label for="interest">I am interested in</label>
-              <select id="interest" name="Interest">
-                <option>Hiring talent</option>
-                <option>Submitting my resume</option>
-                <option>General inquiry</option>
-              </select>
-            </div>
-          </div>
-          <div class="field">
-            <label for="message">Message</label>
-            <textarea id="message" name="Message" placeholder="Tell us how we can help"></textarea>
-          </div>
-          <button class="btn btn-gold" type="submit">Send Message</button>
-        </form>
       </div>
     </section>
   </main>
@@ -1013,8 +1011,9 @@
         </div>
         <div class="footer-col">
           <h4>Contact</h4>
-          <a href="mailto:info@lemoraglobal.com">info@lemoraglobal.com</a>
+          <a href="mailto:admin@lemoraglobal.com">admin@lemoraglobal.com</a>
           <a href="tel:+17342624763">734-262-4763</a>
+          <address>1670 Friedrich St<br>Glendale Heights, IL 60139</address>
           <a href="https://lemoraglobal.com">www.lemoraglobal.com</a>
         </div>
       </div>
@@ -1030,16 +1029,21 @@
     const navLinks = document.getElementById('navLinks');
     const year = document.getElementById('year');
 
+    // Keep the icon, the accessible name, and aria-expanded in sync so screen
+    // readers can tell whether the menu is currently open.
+    const setMenu = (open) => {
+      navLinks.classList.toggle('active', open);
+      mobileToggle.textContent = open ? '×' : '☰';
+      mobileToggle.setAttribute('aria-expanded', String(open));
+      mobileToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+
     mobileToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      mobileToggle.textContent = navLinks.classList.contains('active') ? '×' : '☰';
+      setMenu(!navLinks.classList.contains('active'));
     });
 
     document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        mobileToggle.textContent = '☰';
-      });
+      link.addEventListener('click', () => setMenu(false));
     });
 
     year.textContent = new Date().getFullYear();
